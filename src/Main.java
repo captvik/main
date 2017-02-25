@@ -12,7 +12,7 @@ public class Main {
         int index_1 = 0;
         int index_2;
 
-        for (int k = 0; k < n; k++) {
+        for (int k = 0; k < n; k++) {  //заполнение массива из файла
             if (k == n - 1) {
                 index_2 = s.length();
             }
@@ -24,8 +24,7 @@ public class Main {
         }
 
         mass_i[0] = 1;
-
-        for (int j = 1; j < n; j++) {
+        for (int j = 1; j < n; j++) {  //алгоритм
             int i = j - 1;
 
             while (i >= 0 && mass[i] > mass[i + 1]) {
@@ -37,14 +36,7 @@ public class Main {
             mass_i[j] = i + 2;
         }
 
-        for (int i = 0; i < n; i++)
-            System.out.print(mass[i] + " ");
-        System.out.println();
-
-        System.out.println(n);
-        System.out.println(s);
-
-        String text_i = "";
+        String text_i = "";            //вывод в файл
         String text_mass = "";
         for (int i = 0; i < n; i++) {
             text_i = text_i + mass_i[i] + " ";
