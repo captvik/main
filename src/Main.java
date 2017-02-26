@@ -8,7 +8,6 @@ public class Main {
         int n = Integer.parseInt(in.readLine().trim());
         String s = in.readLine().trim();
         int [] mass = new int[n];
-        //int [] mass_i = new int[n];
         int index_1 = 0;
         int index_2;
 
@@ -20,7 +19,6 @@ public class Main {
                 index_2 = s.indexOf(" ", index_1 + 1);
             }
             mass[k] = Integer.parseInt(s.substring(index_1, index_2));
-            //mass_i[k] = k + 1;
             index_1 = index_2 + 1;
         }
         PrintWriter out = new PrintWriter("output.txt");
@@ -29,16 +27,14 @@ public class Main {
             String text_i = "";
             while (i >= 0 && mass[i] > mass[i + 1]) {
                 int temp = mass[i];
-                //int temp_i = mass_i[i];
                 mass[i] = mass[i + 1];
-                //mass_i[i] = mass_i[i + 1];
                 mass[i + 1] = temp;
-                //mass_i[i + 1] = temp_i;
-                text_i = "Swap elements at indices " + (i + 1) + " and " + (j + 1) + ".";
+                text_i = "Swap elements at indices " + (i + 1) + " and " + (i + 2) + ".";
+                out.println(text_i);
                 i--;
             }
-            if (i != j - 1)
-                out.println(text_i);
+            //if (i != j - 1)
+             //   out.println(text_i);
         }
         out.println("No more swaps needed.");
         String text = "";
