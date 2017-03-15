@@ -56,8 +56,8 @@ public class Main {
         int n = mass_l.length;
         int m = mass_r.length;
         int [] mass_merge = new int [n + m];
-        while ((i < n) | (j < m)) {
-            if ((j == m) | ((i < n) && (j < m) && (mass_l [i] <= mass_r [j]))) {
+        while ((i < n) || (j < m)) {
+            if ((j == m) || ((i < n) && (mass_l [i] <= mass_r [j]))) {
                 mass_merge [k] = mass_l [i];
                 i++;
             }
