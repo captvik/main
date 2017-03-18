@@ -38,19 +38,11 @@ public class Main {
             return mass;
         int n = s/2;
         int m = s - s/2;
-        //int [] mass_l = new int [n];
-        //int [] mass_r = new int [m];
-        //for (int i = 0; i < s; i++) {
-        //    if (i < n)
-        //        mass_l [i] = mass [i];
-        //    else
-        //        mass_r [i - n] = mass [i];
-        //}
         int Lr = L + n - 1;
         int Rl = L + n;
         merge_sort(mass, L, Lr, out);
         merge_sort(mass, Rl, R, out);
-        int i = L;
+        int i = L - 1;
         int j = Rl - 1;
         int k = 0;
         int [] mass_merge = new int [n + m];
@@ -65,6 +57,7 @@ public class Main {
             }
             k++;
         }
+
         i = L - 1;
         for (int f = 0; f < (n + m); f++) {
             mass[i] = mass_merge[f];
