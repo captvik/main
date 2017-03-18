@@ -34,27 +34,25 @@ public class Main {
     }
 
     public static int [] merge_sort(int [] mass, int L, int R, PrintWriter out) {
-        int n = mass.length;
-        if (n == 1)
+        int s = mass.length;
+        if (s == 1)
             return mass;
-        int [] mass_l = new int [n/2];
-        int [] mass_r = new int [n - n/2];
-        for (int i = 0; i < n; i++) {
-            if (i < n/2)
+        int n = s/2;
+        int m = s - s/2;
+        int [] mass_l = new int [n];
+        int [] mass_r = new int [m];
+        for (int i = 0; i < s; i++) {
+            if (i < n)
                 mass_l [i] = mass [i];
             else
-                mass_r [i - n/2] = mass [i];
+                mass_r [i - n] = mass [i];
         }
-        mass_l = merge_sort(mass_l, L, L + n/2 - 1, out);
-        mass_r = merge_sort(mass_r, L + n/2, R, out);
-        return merge(mass_l, mass_r, L, R, out);
-    }
-    public static int [] merge(int [] mass_l, int [] mass_r, int L, int R, PrintWriter out) {
+        mass_l = merge_sort(mass_l, L, L + n - 1, out);
+        mass_r = merge_sort(mass_r, L + n, R, out);
         int i = 0;
         int j = 0;
         int k = 0;
-        int n = mass_l.length;
-        int m = mass_r.length;
+
         int [] mass_merge = new int [n + m];
         while ((i < n) || (j < m)) {
             if ((j == m) || ((i < n) && (mass_l [i] <= mass_r [j]))) {
@@ -70,4 +68,5 @@ public class Main {
         out.println(L + " " + R + " " + mass_merge [0] + " " + mass_merge [mass_merge.length - 1] );
         return mass_merge;
     }
+
 }
