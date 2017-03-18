@@ -1,5 +1,4 @@
 import java.io.*;
-import java.math.BigInteger;
 
 public class Main {
 
@@ -34,39 +33,45 @@ public class Main {
     }
 
     public static int [] merge_sort(int [] mass, int L, int R, PrintWriter out) {
-        int s = mass.length;
+        int s = R - L + 1;
         if (s == 1)
             return mass;
         int n = s/2;
         int m = s - s/2;
-        int [] mass_l = new int [n];
-        int [] mass_r = new int [m];
-        for (int i = 0; i < s; i++) {
-            if (i < n)
-                mass_l [i] = mass [i];
-            else
-                mass_r [i - n] = mass [i];
-        }
-        mass_l = merge_sort(mass_l, L, L + n - 1, out);
-        mass_r = merge_sort(mass_r, L + n, R, out);
-        int i = 0;
-        int j = 0;
+        //int [] mass_l = new int [n];
+        //int [] mass_r = new int [m];
+        //for (int i = 0; i < s; i++) {
+        //    if (i < n)
+        //        mass_l [i] = mass [i];
+        //    else
+        //        mass_r [i - n] = mass [i];
+        //}
+        int Lr = L + n - 1;
+        int Rl = L + n;
+        merge_sort(mass, L, Lr, out);
+        merge_sort(mass, Rl, R, out);
+        int i = L;
+        int j = Rl - 1;
         int k = 0;
-
         int [] mass_merge = new int [n + m];
-        while ((i < n) || (j < m)) {
-            if ((j == m) || ((i < n) && (mass_l [i] <= mass_r [j]))) {
-                mass_merge [k] = mass_l [i];
+        while ((i < Lr) || (j < R)) {
+            if ((j == R) || ((i < Lr) && (mass [i] <= mass [j]))) {
+                mass_merge [k] = mass [i];
                 i++;
             }
             else {
-                mass_merge [k] = mass_r [j];
+                mass_merge [k] = mass [j];
                 j++;
             }
             k++;
         }
-        out.println(L + " " + R + " " + mass_merge [0] + " " + mass_merge [mass_merge.length - 1] );
-        return mass_merge;
+        i = L - 1;
+        for (int f = 0; f < (n + m); f++) {
+            mass[i] = mass_merge[f];
+            i++;
+        }
+        out.println(L + " " + R + " " + mass [0] + " " + mass [mass.length - 1] );
+        return mass;
     }
 
 }
